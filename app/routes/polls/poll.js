@@ -8,6 +8,7 @@ export default Ember.Route.extend({
     return store.getPollById(params.poll_id);
   },
 
+  // We need to reference the store by adding a store property to the route.
   store: Ember.inject.service()
 
 });

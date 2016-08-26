@@ -1,4 +1,12 @@
+// the same data structures are needed across the app so we create a service
+// called 'store' to hold the data.
+// The service was created with the command $ ember generate service store
+// The file name matches the service name 'store'
+// Service objects are made available within another object using Ember.inject.service()
 import Ember from 'ember';
+
+// We need to import the models using project paths. 'quiz' is the name we defined
+// with ember new, when we created the app.
 import Poll from 'quiz/models/poll';
 import Option from 'quiz/models/option';
 
