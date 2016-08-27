@@ -2,17 +2,23 @@
     child templates may be displayed. }}
 {{outlet}}
 
-<h4>Check out previous questions from Woodland Wanderers:</h4>
+<footer class="footer">
+  <h4>Check out previous questions from Woodland Wanderers:</h4>
 
-{{! The polls route model function is returning an array. We deal with that
-    using the #each help to interate over the collection and render the block
-    once for each instance. }}
-<ul>
-  {{#each model as |poll|}}
-  {{! The #link-to help accepts on or more objects to populate the
-      dynamic segments. The nesting we did in the router introduces
-      route namespace. So the #link-to route name needs to match. The
-      second object (poll) specifies the poll object }}
-    <li>{{#link-to "polls.poll" poll}}{{poll.question}}{{/link-to}}</li>
-  {{/each}}
-</ul>
+  {{! The polls route model function is returning an array. We deal with that
+      using the #each help to interate over the collection and render the block
+      once for each instance. }}
+  <ul class="list list--space">
+    {{#each model as |poll|}}
+    {{! The #link-to help accepts on or more objects to populate the
+        dynamic segments. The nesting we did in the router introduces
+        route namespace. So the #link-to route name needs to match. The
+        second object (poll) specifies the poll object }}
+      <li class="list-item">{{#link-to "polls.poll" poll}}{{poll.question}}{{/link-to}}</li>
+    {{/each}}
+  </ul>
+
+  <p class="footer-copyright">
+    <span class="footer-copyright-text">&copy; Woodland Wanderer Whatchamacallits</span>
+  </p>
+</footer>
