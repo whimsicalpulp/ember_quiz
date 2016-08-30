@@ -15,9 +15,9 @@ const polls = [
     id: '1',
     question: 'Which Poisonous Plant Are You?',
     options: [
-      Option.create({ id: '1', value: 'Nightshade' }),
-      Option.create({ id: '2', value: 'Hemlock' }),
-      Option.create({ id: '3', value: 'Rhubarb' })
+      Option.create({ id: '1', value: 'Nightshade', votes: 1 }),
+      Option.create({ id: '2', value: 'Hemlock', votes: 5 }),
+      Option.create({ id: '3', value: 'Rhubarb', votes: 0 })
     ]
   }),
 
@@ -25,14 +25,21 @@ const polls = [
     id: '2',
     question: 'Which Is Your Favorite Woodland Wanderer Way?',
     options: [
-      Option.create({ id: '4', value: 'Honesty' }),
-      Option.create({ id: '5', value: 'Integrity' }),
-      Option.create({ id: '6', value: 'Patience' })
+      Option.create({ id: '4', value: 'Honesty', votes: 3 }),
+      Option.create({ id: '5', value: 'Integrity', votes: 4 }),
+      Option.create({ id: '6', value: 'Patience', votes: 2 })
     ]
   })
 ];
 
 export default Ember.Service.extend({
+  savePoll(poll) {
+    console.log("store: saving poll");
+    poll.set('id', (polls.length + 1).toString());
+    polls.pushObject(poll);
+    return poll;
+  },
+
   getPolls() {
     return polls;
   },
@@ -40,5 +47,20 @@ export default Ember.Service.extend({
   getPollById( id ) {
     const polls = this.getPolls();
     return polls.findBy( 'id', id);
+  },
+
+  // To manage a new poll's information, we need an empty Poll record to work with.
+  // newPoll() returns a new Poll record with 3 options initialized with 0 votes.
+  // The index route always show a new Poll, so the route will call this function to
+  // create and return a new Poll as its model.
+  newPoll() {
+    return Poll.create({
+      options: [
+        Option.create({ votes: 0 }),
+        Option.create({ votes: 0 }),
+        Option.create({ votes: 0 })
+      ]
+    });
   }
+
 });

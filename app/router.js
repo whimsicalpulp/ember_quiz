@@ -26,7 +26,8 @@ Router.map(function() {
     // Dynamic segments are part of the URL path that holds variable data, like
     // identifiers. Dynamic segments start with a colon. Here the route would
     // look something like /polls/2 where 2 is the poll_id
-    this.route('poll', {path: "/:poll_id" });
+    this.route('poll', { path: '/:poll_id' });
+    this.route('results', { path: '/:poll_id/results' });
   });
 });
 

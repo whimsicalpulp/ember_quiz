@@ -1,6 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  actions: {
+    voteForOption(poll, option) {
+      option.incrementProperty('votes');
+      this.transitionTo('polls.results', poll);
+    }
+  },
+
   // The router passes the dynamic segment values to the route's model hook
   // via the params parameter.
   model(params) {
